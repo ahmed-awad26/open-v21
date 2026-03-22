@@ -1,0 +1,106 @@
+package com.opencontacts.core.model
+
+import java.util.UUID
+
+data class VaultSummary(
+    val id: String = UUID.randomUUID().toString(),
+    val displayName: String,
+    val colorToken: String,
+    val iconToken: String,
+    val isLocked: Boolean,
+    val isArchived: Boolean,
+)
+
+data class ContactSummary(
+    val id: String,
+    val displayName: String,
+    val primaryPhone: String?,
+    val tags: List<String> = emptyList(),
+    val isFavorite: Boolean = false,
+    val folderName: String? = null,
+    val deletedAt: Long? = null,
+    val photoUri: String? = null,
+)
+
+data class NoteSummary(
+    val id: String,
+    val contactId: String,
+    val body: String,
+    val createdAt: Long,
+)
+
+data class ReminderSummary(
+    val id: String,
+    val contactId: String,
+    val title: String,
+    val dueAt: Long,
+    val isDone: Boolean,
+    val createdAt: Long,
+)
+
+data class TimelineItemSummary(
+    val id: String,
+    val contactId: String,
+    val type: String,
+    val title: String,
+    val subtitle: String?,
+    val createdAt: Long,
+)
+
+data class ContactDetails(
+    val contact: ContactSummary,
+    val notes: List<NoteSummary> = emptyList(),
+    val reminders: List<ReminderSummary> = emptyList(),
+    val timeline: List<TimelineItemSummary> = emptyList(),
+)
+
+data class ContactDraft(
+    val id: String? = null,
+    val displayName: String,
+    val primaryPhone: String? = null,
+    val tags: List<String> = emptyList(),
+    val isFavorite: Boolean = false,
+    val folderName: String? = null,
+    val photoUri: String? = null,
+)
+
+data class TagSummary(
+    val name: String,
+    val colorToken: String = "default",
+    val usageCount: Int = 0,
+)
+
+data class FolderSummary(
+    val name: String,
+    val iconToken: String = "folder",
+    val colorToken: String = "blue",
+    val usageCount: Int = 0,
+    val imageUri: String? = null,
+)
+
+data class BackupRecordSummary(
+    val id: String = UUID.randomUUID().toString(),
+    val provider: String,
+    val vaultId: String,
+    val createdAt: Long,
+    val status: String,
+    val filePath: String,
+    val fileSizeBytes: Long,
+)
+
+data class ImportExportHistorySummary(
+    val id: String = UUID.randomUUID().toString(),
+    val operationType: String,
+    val vaultId: String,
+    val createdAt: Long,
+    val status: String,
+    val filePath: String,
+    val itemCount: Int,
+)
+
+enum class ImportExportFormat {
+    VCF,
+    CSV,
+    JSON,
+    EXCEL,
+}

@@ -21,6 +21,9 @@ private val LightColors = lightColorScheme(
     secondaryContainer = Color(0xFFC7FFF7),
     onSecondaryContainer = Color(0xFF00201D),
     tertiary = Color(0xFF8B5CF6),
+    onTertiary = Color.White,
+    tertiaryContainer = Color(0xFFE9DDFF),
+    onTertiaryContainer = Color(0xFF2B1454),
     background = Color(0xFFF7F8FC),
     onBackground = Color(0xFF0F172A),
     surface = Color(0xFFFCFDFF),
@@ -40,6 +43,9 @@ private val DarkColors = darkColorScheme(
     secondaryContainer = Color(0xFF00504A),
     onSecondaryContainer = Color(0xFFC7FFF7),
     tertiary = Color(0xFFE9B6FF),
+    onTertiary = Color(0xFF3B1454),
+    tertiaryContainer = Color(0xFF5B2B7A),
+    onTertiaryContainer = Color(0xFFFFD7F7),
     background = Color(0xFF09101D),
     onBackground = Color(0xFFE5EAF4),
     surface = Color(0xFF111827),
@@ -50,24 +56,61 @@ private val DarkColors = darkColorScheme(
 )
 
 private val OpenContactsTypography = Typography(
-    headlineLarge = TextStyle(fontSize = 32.sp, lineHeight = 38.sp, fontWeight = FontWeight.Bold),
-    headlineMedium = TextStyle(fontSize = 28.sp, lineHeight = 34.sp, fontWeight = FontWeight.Bold),
-    headlineSmall = TextStyle(fontSize = 24.sp, lineHeight = 30.sp, fontWeight = FontWeight.SemiBold),
-    titleLarge = TextStyle(fontSize = 20.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold),
-    titleMedium = TextStyle(fontSize = 16.sp, lineHeight = 22.sp, fontWeight = FontWeight.SemiBold),
-    bodyLarge = TextStyle(fontSize = 15.sp, lineHeight = 22.sp),
-    bodyMedium = TextStyle(fontSize = 14.sp, lineHeight = 20.sp),
-    bodySmall = TextStyle(fontSize = 12.sp, lineHeight = 18.sp),
-    labelLarge = TextStyle(fontSize = 14.sp, lineHeight = 20.sp, fontWeight = FontWeight.Medium),
+    headlineLarge = TextStyle(
+        fontSize = 32.sp,
+        lineHeight = 38.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    headlineMedium = TextStyle(
+        fontSize = 28.sp,
+        lineHeight = 34.sp,
+        fontWeight = FontWeight.Bold,
+    ),
+    headlineSmall = TextStyle(
+        fontSize = 24.sp,
+        lineHeight = 30.sp,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    titleLarge = TextStyle(
+        fontSize = 20.sp,
+        lineHeight = 26.sp,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    titleMedium = TextStyle(
+        fontSize = 16.sp,
+        lineHeight = 22.sp,
+        fontWeight = FontWeight.SemiBold,
+    ),
+    bodyLarge = TextStyle(
+        fontSize = 15.sp,
+        lineHeight = 22.sp,
+    ),
+    bodyMedium = TextStyle(
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+    ),
+    bodySmall = TextStyle(
+        fontSize = 12.sp,
+        lineHeight = 18.sp,
+    ),
+    labelLarge = TextStyle(
+        fontSize = 14.sp,
+        lineHeight = 20.sp,
+        fontWeight = FontWeight.Medium,
+    ),
 )
 
 @Composable
-fun OpenContactsTheme(themeMode: String = "SYSTEM", content: @Composable () -> Unit) {
+fun OpenContactsTheme(
+    themeMode: String = "SYSTEM",
+    content: @Composable () -> Unit,
+) {
     val dark = when (themeMode.uppercase()) {
         "LIGHT" -> false
         "DARK" -> true
         else -> isSystemInDarkTheme()
     }
+
     MaterialTheme(
         colorScheme = if (dark) DarkColors else LightColors,
         typography = OpenContactsTypography,
